@@ -85,11 +85,7 @@ public final class BlockGenerator extends DataGenerator_1_19_3<Block> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public JsonObject generate() {
-
-        Map<SoundEvent, String> soundNames = (Map<SoundEvent, String>) DataGenHolder.getNameMap(DataGenType.SOUNDS);
-        Map<Property<?>, String> bsPropertyNames = (Map<Property<?>, String>) DataGenHolder.getNameMap(DataGenType.BLOCK_PROPERTIES);
 
         JsonObject blocks = new JsonObject();
         for (ResourceLocation blockRL : BLOCK_REGISTRY.keySet().stream().sorted(Comparator.comparingInt(value -> BLOCK_REGISTRY.getId(BLOCK_REGISTRY.get(value)))).toList()) {
@@ -109,7 +105,6 @@ public final class BlockGenerator extends DataGenerator_1_19_3<Block> {
 
                     // Default values
                     state.addProperty("offsetType", bs.getOffsetType().name());
-
 
                     // Shapes (Hitboxes)
                     state.addProperty("shape", bs.getShape(EmptyBlockGetter.INSTANCE, BlockPos.ZERO).toAabbs().toString());
